@@ -2,77 +2,105 @@
 pragma solidity ^0.8.0;
 
 contract PatientData {
-    struct BasicInfo {
-        string name;
-        uint age;
-        string gender;
-        string bloodGroup;
-    }
-
-    struct MedicalInfo {
-        string condition;
-        string medications;
-        string lastCheckupDate;
-        string bmi;
-        string location;
-    }
-
-    struct AdditionalInfo {
-        string note;
-        string history;
-        string filename;
-    }
-
     struct Patient {
-        uint id;
-        BasicInfo basicInfo;
-        MedicalInfo medicalInfo;
-        AdditionalInfo additionalInfo;
+        uint256 id;
+        string name;
+        string dob;
+        uint8 age;
+        string gender;
+        string medicalCondition;
+        string bloodType;
+        string medicalHistory;
+        string medication;
+        string lastCheckupDate;
+        string notes;
     }
 
-    mapping(uint => Patient) public patients;
-    uint public patientCount;
+    mapping(uint256 => Patient) public patients;
+    uint256 public patientCount;
 
-    // Function to add patient basic info
-    function addBasicInfo(
-        uint _id,
-        string memory _name,
-        uint _age,
-        string memory _gender,
-        string memory _bloodGroup
+    event PatientAdded(uint256 id, string name);
+
+    // Function to add multiple patients at once
+    function addPatients(
+        string[] memory _names,
+        string[] memory _dobs,
+        uint8[] memory _ages,
+        string[] memory _genders,
+        string[] memory _medicalConditions,
+        string[] memory _bloodTypes,
+        string[] memory _medicalHistories,
+        string[] memory _medications,
+        string[] memory _lastCheckupDates,
+        string[] memory _notes
     ) public {
-        Patient storage patient = patients[_id];
-        patient.id = _id;
-        patient.basicInfo = BasicInfo(_name, _age, _gender, _bloodGroup);
-        patientCount++;
+        require(
+            _names.length == _dobs.length &&
+                _dobs.length == _ages.length &&
+                _ages.length == _genders.length &&
+                _genders.length == _medicalConditions.length &&
+                _medicalConditions.length == _bloodTypes.length &&
+                _bloodTypes.length == _medicalHistories.length &&
+                _medicalHistories.length == _medications.length &&
+                _medications.length == _lastCheckupDates.length &&
+                _lastCheckupDates.length == _notes.length,
+            "All input arrays must have the same length."
+        );
+
+        for (uint256 i = 0; i < _names.length; i++) {
+            patientCount++;
+            patients[patientCount] = Patient(
+                patientCount,
+                _names[i],
+                _dobs[i],
+                _ages[i],
+                _genders[i],
+                _medicalConditions[i],
+                _bloodTypes[i],
+                _medicalHistories[i],
+                _medications[i],
+                _lastCheckupDates[i],
+                _notes[i]
+            );
+            emit PatientAdded(patientCount, _names[i]);
+        }
     }
 
-    // Function to add medical info
-    function addMedicalInfo(
-        uint _id,
-        string memory _condition,
-        string memory _medications,
-        string memory _lastCheckupDate,
-        string memory _bmi,
-        string memory _location
-    ) public {
-        Patient storage patient = patients[_id];
-        patient.medicalInfo = MedicalInfo(_condition, _medications, _lastCheckupDate, _bmi, _location);
-    }
+    // Function to retrieve a single patient's details by ID
+    function getPatient(
+        uint256 _id
+    )
+        public
+        view
+        returns (
+            uint256 id,
+            string memory name,
+            string memory dob,
+            uint8 age,
+            string memory gender,
+            string memory medicalCondition,
+            string memory bloodType,
+            string memory medicalHistory,
+            string memory medication,
+            string memory lastCheckupDate,
+            string memory notes
+        )
+    {
+        require(_id > 0 && _id <= patientCount, "Patient does not exist.");
 
-    // Function to add additional info
-    function addAdditionalInfo(
-        uint _id,
-        string memory _note,
-        string memory _history,
-        string memory _filename
-    ) public {
-        Patient storage patient = patients[_id];
-        patient.additionalInfo = AdditionalInfo(_note, _history, _filename);
-    }
-
-    // Function to retrieve patient data
-    function getPatient(uint _id) public view returns (Patient memory) {
-        return patients[_id];
+        Patient memory patient = patients[_id];
+        return (
+            patient.id,
+            patient.name,
+            patient.dob,
+            patient.age,
+            patient.gender,
+            patient.medicalCondition,
+            patient.bloodType,
+            patient.medicalHistory,
+            patient.medication,
+            patient.lastCheckupDate,
+            patient.notes
+        );
     }
 }

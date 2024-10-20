@@ -1,0 +1,242 @@
+{
+    "abi": [
+        {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "name": "PatientAdded",
+          "type": "event"
+        },
+        {
+          "inputs": [],
+          "name": "patientCount",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "patients",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "dob",
+              "type": "string"
+            },
+            {
+              "internalType": "uint8",
+              "name": "age",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "gender",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "medicalCondition",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "bloodType",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "medicalHistory",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "medication",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "lastCheckupDate",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "notes",
+              "type": "string"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "string[]",
+              "name": "_names",
+              "type": "string[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "_dobs",
+              "type": "string[]"
+            },
+            {
+              "internalType": "uint8[]",
+              "name": "_ages",
+              "type": "uint8[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "_genders",
+              "type": "string[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "_medicalConditions",
+              "type": "string[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "_bloodTypes",
+              "type": "string[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "_medicalHistories",
+              "type": "string[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "_medications",
+              "type": "string[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "_lastCheckupDates",
+              "type": "string[]"
+            },
+            {
+              "internalType": "string[]",
+              "name": "_notes",
+              "type": "string[]"
+            }
+          ],
+          "name": "addPatients",
+          "outputs": [],
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "inputs": [
+            {
+              "internalType": "uint256",
+              "name": "_id",
+              "type": "uint256"
+            }
+          ],
+          "name": "getPatient",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "dob",
+              "type": "string"
+            },
+            {
+              "internalType": "uint8",
+              "name": "age",
+              "type": "uint8"
+            },
+            {
+              "internalType": "string",
+              "name": "gender",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "medicalCondition",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "bloodType",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "medicalHistory",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "medication",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "lastCheckupDate",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "notes",
+              "type": "string"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function",
+          "constant": true
+        }
+      ],
+
+    "networks": {
+      "11155111": {
+        "address": "0xF2D03BF77f57baEF78b9083057d86C773EB84aDb"
+      }
+    }
+  }
+  
